@@ -1,0 +1,8 @@
+.stack {
+  display: grid;
+  gap: var(--size-2);
+
+  > * + * {
+    /* border-block-start: 1px solid var(--surface-3); */
+  }
+}
