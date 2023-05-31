@@ -1,0 +1,7 @@
+.aside {
+  display: grid;
+  align-items: start;
+  gap: var(--size-fluid-3);
+  padding: var(--size-3);
+  /* block-size: 100svh; */
+}
