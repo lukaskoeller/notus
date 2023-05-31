@@ -1,0 +1,15 @@
+.item {
+  display: grid;
+  gap: var(--size-1);
+  /* inline-size: min(100%, calc(var(--size-content-3) / 2)); */
+  inline-size: calc(var(--size-content-3) / 2);
+}
+
+.heading {
+  font-weight: var(--font-weight-5);
+  font-size: var(--font-size-3);
+}
+
+.info {
+  color: var(--text-2);
+}
