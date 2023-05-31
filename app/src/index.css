@@ -1,0 +1,34 @@
+@import "open-props/postcss/style";
+@import "open-props/postcss/normalize";
+@import "open-props/oklch-hues";
+@import "open-props/gray-hd";
+
+* {
+  --gray-hue: var(--hue-green);
+  --gray-chroma: .05;
+
+  accent-color: var(--surface-4);
+  outline-color: var(--surface-4);
+}
+
+html {
+  --surface-1: var(--gray-14);
+  --surface-2: var(--gray-12);
+  --surface-3: var(--gray-10);
+  --surface-4: var(--gray-9);
+  
+  --text-1: var(--gray-1);
+  --text-2: var(--gray-3);
+}
+
+@media (prefers-color-scheme: light) {
+  html {
+    --surface-1: var(--gray-0);
+    --surface-2: var(--gray-1);
+    --surface-3: var(--gray-2);
+    --surface-4: var(--gray-3);
+
+    --text-1: var(--gray-14);
+    --text-2: var(--gray-11);
+  }
+}
