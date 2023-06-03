@@ -1,7 +1,6 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import styles from './App.module.css';
 import { Aside } from './components/Aside/Aside';
+import { Main } from './components/Main/Main';
 
 function App() {
 
@@ -10,9 +9,9 @@ function App() {
       <Aside>
         aside
       </Aside>
-      <main className={styles.main}>
-        Main
-      </main>
+      <Main>
+        main
+      </Main>
     </div>
   )
 }
