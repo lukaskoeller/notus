@@ -1,0 +1,20 @@
+@import "open-props/media";
+
+.main {
+  padding-inline: var(--size-7);
+  padding-block: var(--size-3);
+
+  @media (--md-n-below) {
+    grid-area: stack;
+    padding-inline: var(--size-3);
+  }
+}
+
+.item {
+  display: grid;
+  gap: var(--size-3);
+
+  & > * {
+    min-block-size: 0;
+  }
+}
