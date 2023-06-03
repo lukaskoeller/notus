@@ -1,5 +1,5 @@
 .card {
-  --card-padding: var(--size-fluid-2);
+  --card-padding: var(--size-3);
 
   background-color: var(--surface-2);
   border-radius: var(--radius-3);
