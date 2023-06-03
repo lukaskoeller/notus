@@ -1,8 +1,24 @@
 .item {
+  --note-item-padding: var(--size-2);
+
   display: grid;
-  gap: var(--size-1);
-  /* inline-size: min(100%, calc(var(--size-content-3) / 2)); */
-  inline-size: calc(var(--size-content-3) / 2);
+  grid-template-columns: auto 1fr;
+  gap: var(--size-2);
+
+  &:last-of-type .main {
+    border-block-end: none;
+  }
+}
+
+.pretab {
+  padding: var(--note-item-padding);
+  padding-inline-end: var(--note-item-padding);
+}
+
+.main {
+  padding: var(--note-item-padding);
+  padding-inline-start: var(--note-item-padding);
+  border-block-end: var(--border-size-1) solid var(--surface-3);
 }
 
 .heading {
