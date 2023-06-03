@@ -1,7 +1,67 @@
+@import "open-props/media";
+
 .aside {
   display: grid;
   align-items: start;
-  gap: var(--size-fluid-3);
   padding: var(--size-3);
   /* block-size: 100svh; */
+  inline-size: calc(var(--size-fluid-10));
+
+  @media (--md-n-below) {
+    --duration: .3s;
+
+    grid-area: stack;
+    display: flex;
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    inline-size: auto;
+    overflow: hidden auto;
+    overscroll-behavior: contain;
+
+    visibility: hidden;
+
+    transform: translateX(-110vw);
+    will-change: transform;
+    transition:
+      transform var(--duration) var(--ease-out-3),
+      visibility 0s linear var(--duration);
+    padding-inline-end: 0;
+    background: hsl(var(--surface-1) / 30%);
+    backdrop-filter: blur(var(--size-2));
+
+    &[data-open="true"] {
+      visibility: visible;
+      transform: translateX(0);
+      transition: transform var(--duration) var(--ease-out-3);
+      /* display: grid; */
+      /* grid-template-columns: [nav] 2fr [escape] 1fr; */
+    }
+  }
+
+  /* @media (--sm-n-below) {
+    &[data-open="true"] {
+      grid-template-columns: [nav] 5fr [escape] 1fr;
+    }
+  } */
+}
+
+.nav {
+  flex: 1 0;
+  display: grid;
+  row-gap: var(--size-3);
+}
+
+.closeBtn {
+  flex: 0 1 var(--size-9);
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  background-color: transparent;
+  padding: 0;
+  border-radius: var(--radius-3);
+
+  @media (--md-n-above) {
+    display: none;
+  }
 }
