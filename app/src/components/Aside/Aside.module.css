@@ -6,6 +6,7 @@
   padding: var(--size-3);
   /* block-size: 100svh; */
   inline-size: calc(var(--size-fluid-10));
+  z-index: 1;
 
   @media (--md-n-below) {
     --duration: .3s;
