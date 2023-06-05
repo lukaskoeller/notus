@@ -4,6 +4,7 @@ import { Card } from "../Card/Card";
 import { NoteItem } from "../NoteItem/NoteItem";
 import { Stack } from "../Stack/Stack";
 import { useSideNav } from "../../hooks/useSideNav";
+import { Search } from "../Search/Search";
 
 export const Aside: FC = () => {
   const { open, closeSideNav } = useSideNav();
@@ -11,9 +12,7 @@ export const Aside: FC = () => {
   return (
     <aside className={styles.aside} data-open={open}>
       <nav className={styles.nav}>
-        <Card>
-          <input type="search" name="search" id="search" placeholder="Find what you are searching for…" />
-        </Card>
+        <Search />
         <Card style={{ '--card-padding': 0 }}>
           <Stack>
             {Array.from(Array(7).keys()).map(() => {
