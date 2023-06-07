@@ -1,0 +1,39 @@
+.article {
+  & h1 {
+    font-size: var(--font-size-5);
+    font-weight: var(--font-weight-5);
+    margin-block-start: var(--font-size-5);
+    margin-block-end: calc(var(--font-size-5) * 2/3);
+  }
+
+  & h2 {
+    font-size: var(--font-size-4);
+    font-weight: var(--font-weight-5);
+    margin-block-start: var(--font-size-4);
+    margin-block-end: calc(var(--font-size-4) * 2/3);
+  }
+
+  & h3 {
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-5);
+    margin-block-start: var(--font-size-3);
+    margin-block-end: calc(var(--font-size-3) * 2/3);
+  }
+
+  & :is(h4, h5, h6) {
+    font-size: var(--font-size-2);
+    font-weight: var(--font-weight-6);
+    margin-block-start: var(--font-size-2);
+    margin-block-end: calc(var(--font-size-2) * 2/3);
+  }
+
+  & pre {
+    inline-size: 100%;
+    margin: 0;
+    margin-block: var(--size-4);
+    padding: var(--size-3);
+    background: var(--surface-2);
+    border-radius: var(--radius-2);
+    word-wrap: normal;
+  }
+}
