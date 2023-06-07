@@ -1,21 +1,17 @@
 import { FC } from "react";
 import styles from "./Main.module.css";
-import { MarkDoc } from "../MarkDoc/MarkDoc";
 import { Header } from "../Header/Header";
-
-const doc = `
-# Hello world.
-> My first Markdoc page
-`;
+import { EditorProvider } from "../../contexts/editor";
+import { Note } from "../Note/Note";
 
 export const Main: FC = () => {
 
   return (
     <main className={styles.main}>
-      <div className={styles.item}>
+      <EditorProvider>
         <Header />
-        <MarkDoc markdown={doc} />
-      </div>
+        <Note />
+      </EditorProvider>
     </main>
   )
 };
