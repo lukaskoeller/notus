@@ -1,5 +1,7 @@
-import { FC, InputHTMLAttributes } from "react";
-import styles from "./SwitchGroup.module.css";
+import { ChangeEvent, FC, InputHTMLAttributes, useCallback } from "react";
+import styles from "./PreviewWriteSwitch.module.css";
+import { useEditor } from "../../hooks/useEditor";
+import { ViewMode } from "../../contexts/editor";
 
 export type SwitchGroupItemProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
@@ -12,6 +14,7 @@ const SwitchGroupItem: FC<SwitchGroupItemProps> = (props) => {
     value,
     label,
     checked,
+    onChange,
   } = props;
 
   return (
@@ -23,6 +26,7 @@ const SwitchGroupItem: FC<SwitchGroupItemProps> = (props) => {
         id={id}
         value={value}
         checked={checked}
+        onChange={onChange}
       />
       <label
         className={styles.label}
@@ -35,6 +39,13 @@ const SwitchGroupItem: FC<SwitchGroupItemProps> = (props) => {
 };
 
 export const PreviewWriteSwitch: FC = () => {
+  const { mode, setMode } = useEditor();
+
+  const handleChange = useCallback((e: ChangeEvent) => {
+    const value = (e.target as HTMLInputElement).value;
+    setMode(value as ViewMode);
+  }, [setMode]);
+
   return (
     <fieldset className={styles.fieldset}>
       <legend className={styles.legend}>Write / Edit</legend>
@@ -43,13 +54,16 @@ export const PreviewWriteSwitch: FC = () => {
         id="mode-preview"
         value="preview"
         label="Preview"
-        checked
+        checked={mode === 'preview'}
+        onChange={handleChange}
       />
       <SwitchGroupItem
         name="mode"
         id="mode-write"
         value="write"
         label="Write"
+        checked={mode === 'write'}
+        onChange={handleChange}
       />
     </fieldset>
   );
