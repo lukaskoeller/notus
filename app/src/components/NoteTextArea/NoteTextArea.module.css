@@ -1,0 +1,9 @@
+.textarea {
+  background: transparent;
+  padding: var(--size-3);
+  inline-size: 100%;
+  block-size: 100%;
+  font-family: monospace;
+  font-size: var(--font-size-1);
+  outline: var(--border-size-2) solid var(--surface-2);
+}
