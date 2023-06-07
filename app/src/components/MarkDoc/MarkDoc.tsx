@@ -1,19 +1,14 @@
 import Markdoc from "@markdoc/markdoc";
 import React, { FC } from "react";
+import styles from "./MarkDoc.module.css";
+import { useEditor } from "../../hooks/useEditor";
 
-export type MarkDocProps = {
-  /**
-   * Markdown as string that will be parsed to DOM.
-   */
-  markdown: string;
-}
-
-export const MarkDoc: FC<MarkDocProps> = (props) => {
-  const { markdown } = props;
-  const ast = Markdoc.parse(markdown);
+export const MarkDoc: FC = () => {
+  const { text } = useEditor();
+  const ast = Markdoc.parse(text);
   const content = Markdoc.transform(ast);
 
   return (
-    <>{Markdoc.renderers.react(content, React)}</>
+    <article className={styles.article}>{Markdoc.renderers.react(content, React)}</article>
   );
 };
