@@ -6,12 +6,8 @@ function App() {
 
   return (
     <div className={styles.grid}>
-      <Aside>
-        aside
-      </Aside>
-      <Main>
-        main
-      </Main>
+      <Aside />
+      <Main />
     </div>
   )
 }
