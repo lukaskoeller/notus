@@ -29,6 +29,15 @@ cd app
 npm run dev
 ```
 
+## ToDos
+
+- [] Add API to add, edit and delete notes connected to a user.
+- [] Connect sprint boot application with react app.
+- [] Show tags in app.
+- [] Add syntax highlighting to preview.
+- [] Add search feature
+- [] More do be added…
+
 ## References
 
 * <https://spring.io/guides/gs/accessing-data-mysql/>
