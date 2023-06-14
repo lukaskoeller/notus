@@ -2,7 +2,7 @@
 
 ![notus app preview](./notus-screenshot.png)
 
-> This app is still WIP!
+## This app is still WIP and not usable yet…
 
 This is a simple notes app using markdown.
 
@@ -40,4 +40,4 @@ npm run dev
 
 ## References
 
-* <https://spring.io/guides/gs/accessing-data-mysql/>
+- <https://spring.io/guides/gs/accessing-data-mysql/>
