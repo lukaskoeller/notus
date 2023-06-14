@@ -1,7 +1,5 @@
 package com.notus.notus;
 
-import java.sql.Date;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,9 +16,9 @@ public class Note {
 
   private String src;
 
-  private Date createdAt;
+  private String createdAt;
 
-  private Date updatedAt;
+  private String updatedAt;
 
   @ManyToOne
   private User author;
