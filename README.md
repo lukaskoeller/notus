@@ -1,5 +1,7 @@
 # notus
 
+![notus app preview](./notus-screenshot.png)
+
 > This app is still WIP!
 
 This is a simple notes app using markdown.
