@@ -30,10 +30,19 @@
   & pre {
     inline-size: 100%;
     margin: 0;
-    margin-block: var(--size-4);
+    margin-block: var(--size-5);
     padding: var(--size-3);
     background: var(--surface-2);
     border-radius: var(--radius-2);
     word-wrap: normal;
+  }
+
+  & code {
+    padding-block: var(--size-1);
+    padding-inline: var(--size-2);
+  }
+
+  & blockquote {
+    margin-block: var(--size-4);
   }
 }
