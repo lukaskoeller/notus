@@ -22,6 +22,44 @@ app = FastAPI()
 def read_root():
     return {"Hello": "World"}
 
+@app.get("/notes/")
+def read_root():
+    return [
+      {
+          "title": "my title",
+          "subtitle": "string",
+          "content": "string",
+          "createdAt": "2019-08-24T14:15:22Z",
+          "tags": [
+              "uschi",
+              "hallo"
+          ],
+          "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08"
+      },
+      {
+          "title": "Jurassic Park Superpower",
+          "subtitle": "string",
+          "content": "string",
+          "createdAt": "2019-08-24T14:15:22Z",
+          "tags": [
+              "uschi",
+              "hallo"
+          ],
+          "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08"
+      },
+      {
+          "title": "All Marvel Movies",
+          "subtitle": "string",
+          "content": "string",
+          "createdAt": "2019-08-24T14:15:22Z",
+          "tags": [
+              "uschi",
+              "hallo"
+          ],
+          "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08"
+      }
+    ]
+
 
 @app.post("/note/")
 def create_note(note: Note):
