@@ -14,10 +14,14 @@ export const Aside: FC = () => {
       <nav className={styles.nav}>
         <Search />
         <Card style={{ '--card-padding': 0 }}>
-          <Stack>
-            {Array.from(Array(7).keys()).map(() => {
+          <Stack style={{ '--stack-gap': 0 }}>
+            {[
+              '🟢🔵 Application inovex',
+              '🍕 Pizzarezept',
+              '🏋️ Trainingsplan'
+            ].map((item) => {
               return (
-                <NoteItem heading="My next vacation 2023" date={new Date()} />
+                <NoteItem heading={item} date={new Date()} />
                 );
               })}
           </Stack>

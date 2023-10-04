@@ -11,16 +11,11 @@ This is a simple notes app using markdown.
 Run the backend:
 
 ```sh
-./gradlew bootRun
+cd ./backend
+uvicorn main:app --reload
 ```
 
-The backend will run on port `8080`.
-
-Run the MySQL database:
-
-```sh
-sudo mysql --password
-```
+The backend will run on port `8000`.
 
 Run the app:
 
@@ -32,12 +27,8 @@ npm run dev
 ## ToDos
 
 - [ ] Add API to add, edit and delete notes connected to a user.
-- [ ] Connect sprint boot application with react app.
+- [ ] Connect endpoints with react app.
 - [ ] Show tags in app.
 - [ ] Add syntax highlighting to preview.
 - [ ] Add search feature
 - [ ] More do be added…
-
-## References
-
-- <https://spring.io/guides/gs/accessing-data-mysql/>

@@ -16,7 +16,7 @@
 }
 
 .main {
-  padding: var(--note-item-padding);
+  padding: var(--size-3);
   padding-inline-start: var(--note-item-padding);
   border-block-end: var(--border-size-1) solid var(--surface-3);
 }
