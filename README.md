@@ -11,7 +11,7 @@ This is a simple notes app using markdown.
 Run the backend:
 
 ```sh
-cd ./backend
+cd backend
 uvicorn main:app --reload
 ```
 
