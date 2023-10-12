@@ -24,6 +24,12 @@ cd app
 npm run dev
 ```
 
+Login to the MySQL monitor via:
+
+```sh
+mysql -u root -p
+```
+
 ## ToDos
 
 - [ ] Add API to add, edit and delete notes connected to a user.
