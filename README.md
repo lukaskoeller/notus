@@ -38,3 +38,7 @@ mysql -u root -p
 - [ ] Add syntax highlighting to preview.
 - [ ] Add search feature
 - [ ] More do be added…
+
+## References
+
+- <https://fastapi.tiangolo.com/tutorial/sql-databases/>
