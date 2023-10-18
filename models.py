@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, ForeignKey
+from sqlalchemy import Column, Integer, String, Date, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 
 from .database import Base
@@ -9,6 +9,8 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
+    email = Column(String, index=True)
+    is_active = Column(Boolean)
 
     notes = relationship("Note", back_populates="items")
 
@@ -19,8 +21,8 @@ class Note(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, unique=True, index=True)
     fileName = Column(String)
-    createdAt = Column(Date)
-    updatedAt = Column(Date)
+    created_at = Column(Date)
+    updated_at = Column(Date)
 
     author = relationship("User", back_populates="notes")
-    authorId = Column(String, ForeignKey("users.id"))
+    author_id = Column(String, ForeignKey("users.id"))
