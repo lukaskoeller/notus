@@ -10,7 +10,7 @@ class Note(BaseModel):
     title: str
     subtitle: str
     content: str | None = None
-    createdAt: datetime
+    created_at: datetime
     tags: List[str] = []
     id: UUID
 
@@ -29,7 +29,7 @@ def read_root():
           "title": "my title",
           "subtitle": "string",
           "content": "string",
-          "createdAt": "2019-08-24T14:15:22Z",
+          "created_at": "2019-08-24T14:15:22Z",
           "tags": [
               "uschi",
               "hallo"
@@ -40,7 +40,7 @@ def read_root():
           "title": "Jurassic Park Superpower",
           "subtitle": "string",
           "content": "string",
-          "createdAt": "2019-08-24T14:15:22Z",
+          "created_at": "2019-08-24T14:15:22Z",
           "tags": [
               "uschi",
               "hallo"
@@ -51,7 +51,7 @@ def read_root():
           "title": "All Marvel Movies",
           "subtitle": "string",
           "content": "string",
-          "createdAt": "2019-08-24T14:15:22Z",
+          "created_at": "2019-08-24T14:15:22Z",
           "tags": [
               "uschi",
               "hallo"
