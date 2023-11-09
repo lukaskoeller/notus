@@ -8,12 +8,24 @@ This is a simple notes app using markdown.
 
 ## Gettings started
 
-Run the backend:
+Start the virtual environment:
 
 ```sh
-cd backend
-uvicorn main:app --reload
+source ./env/bin/activate
 ```
+
+Verify that the virtual environment is active:
+
+```sh
+which python
+```
+
+Create engine and tables:
+
+```sh
+python app.py
+```
+
 
 The backend will run on port `8000`.
 
