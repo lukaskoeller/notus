@@ -14,7 +14,7 @@ export const Aside: FC = () => {
       <nav className={styles.nav}>
         <Search />
         <Card style={{ '--card-padding': 0 }}>
-          <Stack style={{ '--stack-gap': 0 }}>
+          <Stack>
             {[
               '🟢🔵 Application inovex',
               '🍕 Pizzarezept',
