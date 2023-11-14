@@ -20,21 +20,30 @@ Verify that the virtual environment is active:
 which python
 ```
 
-Create engine and tables:
+Install dependencies:
 
 ```sh
-python app.py
+python -m pip install fastapi "uvicorn[standard]"
 ```
 
+Run the application:
+
+```sh
+uvicorn main:app
+```
+
+To watch for changes, run the command with the [`--reload`](https://sqlmodel.tiangolo.com/tutorial/fastapi/simple-hero-api/#uvicorn-reload) option.
 
 The backend will run on port `8000`.
 
-Run the app:
+Open a new terminal and run the web app:
 
 ```sh
 cd app
 npm run dev
 ```
+
+Check the docs at `http://localhost:8000/docs`.
 
 Login to the MySQL monitor via:
 
@@ -50,7 +59,3 @@ mysql -u root -p
 - [ ] Add syntax highlighting to preview.
 - [ ] Add search feature
 - [ ] More do be added…
-
-## References
-
-- <https://fastapi.tiangolo.com/tutorial/sql-databases/>
