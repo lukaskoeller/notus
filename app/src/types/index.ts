@@ -6,3 +6,8 @@ export type CSSStyleObject = CSSProperties & {
 } & {
   '--gap'?: string;
 };
+
+/**
+ * Get a union of all values from an object.
+ */
+export type ObjectValues<T extends Record<string, unknown>> = T[keyof T];
