@@ -4,11 +4,9 @@ import styles from "./MarkDoc.module.css";
 import { useEditor } from "../../hooks/useEditor";
 
 export const MarkDoc: FC = () => {
-  const { text } = useEditor();
-  const ast = Markdoc.parse(text);
-  const content = Markdoc.transform(ast);
+  const { treeNode } = useEditor();
 
   return (
-    <article className={styles.article}>{Markdoc.renderers.react(content, React)}</article>
+    <article className={styles.article}>{Markdoc.renderers.react(treeNode, React)}</article>
   );
 };
