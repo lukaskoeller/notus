@@ -6,8 +6,9 @@
 export type Note = {
     id?: number;
     title: string;
-    file_name: string;
-    created_at: string;
-    updated_at: string;
+    file_name?: string;
+    content: string;
+    created_at?: string;
+    updated_at?: string;
 };
 
