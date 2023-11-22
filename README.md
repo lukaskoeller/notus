@@ -20,7 +20,7 @@ Verify that the virtual environment is active:
 which python
 ```
 
-Install dependencies:
+On the first time, install dependencies:
 
 ```sh
 python -m pip install fastapi "uvicorn[standard]"
