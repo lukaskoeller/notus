@@ -1,32 +1,33 @@
-import { FC, Suspense } from "react";
+import { FC } from "react";
 import styles from './Aside.module.css';
 import { Card } from "../Card/Card";
 import { NoteItem } from "../NoteItem/NoteItem";
 import { Stack } from "../Stack/Stack";
 import { useSideNav } from "../../hooks/useSideNav";
 import { Search } from "../Search/Search";
-import { useQuery } from "@tanstack/react-query";
-import { DefaultService } from "../../api";
+import { useNotes } from "../../data";
 
 export const Aside: FC = () => {
   const { open, closeSideNav } = useSideNav();
-  const { data: notes } = useQuery({ queryKey: ['notes'], queryFn: async () => await DefaultService.getNotesNotesGet() });
+  const { data: notes, isLoading } = useNotes();
 
   return (
     <aside className={styles.aside} data-open={open}>
       <nav className={styles.nav}>
         <Search />
-        <Card style={{ '--card-padding': 0 }}>
-          <Suspense fallback="Loading…">
+        <div>
+          {isLoading ? (
+            <span>Loading…</span>
+          ) : (
             <Stack>
               {(notes ?? [])?.map(({ id, title, updated_at }) => {
-                return (
-                  <NoteItem key={id} heading={title} date={new Date(updated_at).toLocaleDateString()} />
-                  );
+                return id ? (
+                  <NoteItem key={id} id={id} heading={title} date={new Date(updated_at).toLocaleDateString()} />
+                  ) : null;
                 })}
             </Stack>
-          </Suspense>
-        </Card>
+          )}
+        </div>
         <Card>
           Tags
         </Card>
