@@ -1,6 +1,6 @@
-from typing import Optional, List, Annotated
+from typing import Optional, List, Annotated, Type
 
-from fastapi import Body, FastAPI
+from fastapi import Body, FastAPI, HTTPException
 from datetime import datetime
 from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import Field, Session, SQLModel, create_engine, select
@@ -35,6 +35,7 @@ app = FastAPI()
 # see https://fastapi.tiangolo.com/tutorial/cors/#use-corsmiddleware
 origins = [
     "http://localhost:5173",
+    "http://localhost:5174",
 ]
 
 app.add_middleware(
@@ -55,6 +56,16 @@ def get_notes():
         notes = session.exec(select(Note)).all()
         return notes
 
+@app.get("/note/{title}")
+def get_note(title: str):
+    with Session(engine) as session:
+        statement = select(Note).where(Note.title == title)
+        results = session.exec(statement)
+        note = results.one()
+        if not note:
+            raise HTTPException(status_code=404, detail="Note not found")
+        return note
+
 @app.post("/note/")
 def create_note(note: Note):
     timestamp = datetime.now()
@@ -67,15 +78,16 @@ def create_note(note: Note):
         session.refresh(note)
         return note
 
-# @app.put("/note/{file_name}")
-# def update_note(note: Note):
-#     note.updated_at = datetime.now()
-#     with Session(engine) as session:
-#         statement = select(Note).where(Note.id == note.id)
-#         results = exec(statement)
-#         note = results.one()
+@app.put("/note/{id}")
+def update_note(note: Note):
+    note.updated_at = datetime.now()
+    with Session(engine) as session:
+        statement = select(Note).where(Note.id == note.id)
+        results = exec(statement)
+        current_note = results.one()
+        note.id = current_note.id
 
-#         session.add(note)
-#         session.commit()
-#         session.refresh(note)
-#         return note
+        session.add(note)
+        session.commit()
+        session.refresh(note)
+        return note
