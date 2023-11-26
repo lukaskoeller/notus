@@ -23,6 +23,27 @@ export class DefaultService {
     }
 
     /**
+     * Get Note
+     * @param title
+     * @returns any Successful Response
+     * @throws ApiError
+     */
+    public static getNoteNoteTitleGet(
+        title: string,
+    ): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/note/{title}',
+            path: {
+                'title': title,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
      * Create Note
      * @param requestBody
      * @returns any Successful Response
@@ -34,6 +55,26 @@ export class DefaultService {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/note/',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Update Note
+     * @param requestBody
+     * @returns any Successful Response
+     * @throws ApiError
+     */
+    public static updateNoteNoteIdPut(
+        requestBody: Note,
+    ): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/note/{id}',
             body: requestBody,
             mediaType: 'application/json',
             errors: {
