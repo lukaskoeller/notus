@@ -22,7 +22,7 @@ export const Aside: FC = () => {
             <Stack>
               {(notes ?? [])?.map(({ id, title, updated_at }) => {
                 return id ? (
-                  <NoteItem key={id} id={id} heading={title} date={new Date(updated_at).toLocaleDateString()} />
+                  <NoteItem key={id} id={id} heading={title} date={updated_at ? new Date(updated_at).toLocaleDateString() : new Date()} />
                   ) : null;
                 })}
             </Stack>
