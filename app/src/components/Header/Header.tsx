@@ -8,6 +8,7 @@ export const Header: FC = () => {
   const { showSideNav } = useSideNav();
   return (
     <header className={styles.header}>
+        <button type="button">Save</button>
         <button type="button" onClick={showSideNav}>
           <ListIcon />
         </button>
