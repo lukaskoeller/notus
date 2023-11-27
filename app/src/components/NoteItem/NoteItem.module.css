@@ -5,9 +5,18 @@
   display: grid;
   grid-template-columns: auto 1fr;
   gap: var(--size-2);
+  border-radius: var(--radius-2);
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
 
   &:last-of-type .main {
     border-block-end: none;
+  }
+
+  /** @see https://reactrouter.com/en/main/components/nav-link#:~:text=By%20default%2C%20an%20active%20class%20is%20added%20to%20a%20%3CNavLink%3E%20component%20when%20it%20is%20active */
+  &:global(.active) {
+    background-color: var(--surface-3);
   }
 }
 
@@ -20,6 +29,10 @@
   padding: var(--size-3);
   padding-inline-start: var(--note-item-padding);
   border-block-end: var(--border-size-1) solid var(--surface-3);
+}
+
+.item:has(+ :global(.active)) .main {
+  border-block-end: var(--border-size-1) solid transparent;
 }
 
 .heading {

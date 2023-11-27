@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styles from "./NoteItem.module.css";
-import { Link } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 export type NoteItemProps = {
   heading: string;
@@ -16,7 +16,7 @@ export const NoteItem: FC<NoteItemProps> = (props) => {
   } = props;
 
   return (
-    <Link to={`/note/${heading}`} className={styles.item}>
+    <NavLink to={`/note/${heading}`} className={styles.item}>
       <div className={styles.pretab}>{preTab}</div>
       <div className={styles.main}>
         <h2 className={styles.heading}>{heading}</h2>
@@ -24,6 +24,6 @@ export const NoteItem: FC<NoteItemProps> = (props) => {
           {date.toLocaleString([], { day: 'numeric', month: 'short', year: 'numeric' })}
         </span>
       </div>
-    </Link>
+    </NavLink>
   );
 }
