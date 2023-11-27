@@ -1,6 +1,7 @@
 .search {
   inline-size: 100%;
   block-size: var(--size-8);
+  background-color: var(--surface-3);
 
   &::placeholder {
     font-weight: var(--font-weight-6);
