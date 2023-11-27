@@ -41,11 +41,6 @@
 }
 
 html {
-  background-color: var(--well-1);
-}
-
-
-html {
   --surface-1: var(--color-11);
   --surface-2: var(--color-12);
   --surface-3: var(--color-13);
@@ -56,6 +51,8 @@ html {
   --text-2: var(--color-5);
   
   color-scheme: dark;
+
+  background-color: var(--well-1);
 }
 
 @media (prefers-color-scheme: light) {
@@ -70,6 +67,8 @@ html {
     --text-2: var(--color-12);
     
     color-scheme: light;
+
+    background-color: var(--surface-1);
   }
 }
 
