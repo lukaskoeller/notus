@@ -3,7 +3,7 @@ import styles from './Stack.module.css';
 
 export type StackProps = {
   children: React.ReactNode;
-  gap?: `var(--${string})`;
+  gap?: `var(--${string})` | '0';
 }
 
 export const Stack: FC<StackProps> = (props) => {
