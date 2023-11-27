@@ -4,6 +4,34 @@
 @import "open-props/oklch-hues";
 @import "open-props/gray-hd";
 
+/** @see https://codepen.io/argyleink/pen/eYxJJbr */
+
+:root {
+  --palette-hue: 140;            /* <angle */
+  --palette-hue-rotate-by: -2;   /* +- deg : warm or cool the palette */
+  --palette-chroma: 1;         /* 0-1 : lower to mute and pastel, over 2 at own risk */
+}
+
+* {
+  --color-max: oklch(65% .3 var(--palette-hue));
+  --color-1:  oklch(98% calc(.03 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (0 * var(--palette-hue-rotate-by))));
+  --color-2:  oklch(97% calc(.06 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (1 * var(--palette-hue-rotate-by))));
+  --color-3:  oklch(93% calc(.10 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (2 * var(--palette-hue-rotate-by))));
+  --color-4:  oklch(84% calc(.12 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (3 * var(--palette-hue-rotate-by))));
+  --color-5:  oklch(80% calc(.16 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (4 * var(--palette-hue-rotate-by))));
+  --color-6:  oklch(71% calc(.19 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (5 * var(--palette-hue-rotate-by))));
+  --color-7:  oklch(66% calc(.20 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (6 * var(--palette-hue-rotate-by))));
+  --color-8:  oklch(58% calc(.21 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (7 * var(--palette-hue-rotate-by))));
+  --color-9:  oklch(53% calc(.20 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (8 * var(--palette-hue-rotate-by))));
+  --color-10: oklch(49% calc(.19 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (9 * var(--palette-hue-rotate-by))));
+  --color-11: oklch(42% calc(.17 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (10 * var(--palette-hue-rotate-by))));
+  --color-12: oklch(35% calc(.15 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (11 * var(--palette-hue-rotate-by))));
+  --color-13: oklch(27% calc(.12 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (12 * var(--palette-hue-rotate-by))));
+  --color-14: oklch(20% calc(.09 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (13 * var(--palette-hue-rotate-by))));
+  --color-15: oklch(16% calc(.07 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (14 * var(--palette-hue-rotate-by))));
+  --color-16: oklch(10% calc(.05 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (15 * var(--palette-hue-rotate-by))));
+}
+
 * {
   --gray-hue: var(--hue-green);
   --gray-chroma: .05;
@@ -13,28 +41,43 @@
 }
 
 html {
-  --surface-1: var(--gray-14);
-  --surface-2: var(--gray-12);
-  --surface-3: var(--gray-10);
-  --surface-4: var(--gray-9);
+  background-color: var(--well-1);
+}
+
+
+html {
+  --surface-1: var(--color-11);
+  --surface-2: var(--color-12);
+  --surface-3: var(--color-13);
+  --surface-document: var(--color-14);
+  --well-1: var(--color-15);
+  --well-2: var(--color-16);
+  --text-1: var(--color-1);
+  --text-2: var(--color-5);
   
-  --text-1: var(--gray-1);
-  --text-2: var(--gray-3);
+  color-scheme: dark;
 }
 
 @media (prefers-color-scheme: light) {
   html {
-    --surface-1: var(--gray-0);
-    --surface-2: var(--gray-1);
-    --surface-3: var(--gray-2);
-    --surface-4: var(--gray-3);
-
-    --text-1: var(--gray-14);
-    --text-2: var(--gray-11);
+    --surface-1: white;
+    --surface-2: var(--color-1);
+    --surface-3: var(--color-3);
+    --surface-document: var(--color-4);
+    --well-1: var(--color-5);
+    --well-2: var(--color-6);
+    --text-1: var(--color-16);
+    --text-2: var(--color-12);
+    
+    color-scheme: light;
   }
 }
 
 .icon {
   inline-size: var(--icon-size, var(--size-7));
   block-size: var(--icon-size, var(--size-7));
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+  font-weight: var(--font-weight-5);
 }
