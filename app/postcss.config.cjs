@@ -1,10 +1,19 @@
+const openProps = require('open-props');
 const postcssPresetEnv = require("postcss-preset-env");
 const postcssImport = require("postcss-import");
 const combineSelectors = require("postcss-combine-duplicated-selectors");
+const postcssJitProps = require('postcss-jit-props');
+const postcssGlobalData = require('@csstools/postcss-global-data');
+const postcssMinify = require('@csstools/postcss-minify');
 
 module.exports = {
   plugins: [
     postcssImport(),
+    postcssGlobalData({
+			files: [
+				'./node_modules/open-props/media.min.css',
+			],
+		}),
     postcssPresetEnv({
       stage: 0,
       autoprefixer: false,
@@ -20,6 +29,8 @@ module.exports = {
         "color-functional-notation": false,
       },
     }),
+    postcssJitProps(openProps),
     combineSelectors(),
+    postcssMinify(),
   ],
 };
