@@ -1,0 +1,17 @@
+.container {
+  padding: var(--size-3);
+  
+  @media (--md-n-above) {
+    padding: var(--size-fluid-5);
+  }
+
+  @media (--md-n-below) {
+    grid-area: stack;
+  }
+}
+
+.subtitle {
+  font-size: var(--font-size-4);
+  max-inline-size: none;
+  color: var(--text-2);
+}
