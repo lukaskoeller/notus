@@ -19,10 +19,10 @@ export const Aside: FC = () => {
           {isLoading ? (
             <span>Loading…</span>
           ) : (
-            <Stack>
+            <Stack gap="0">
               {(notes ?? [])?.map(({ id, title, updated_at }) => {
                 return id ? (
-                  <NoteItem key={id} id={id} heading={title} date={updated_at ? new Date(updated_at).toLocaleDateString() : new Date()} />
+                  <NoteItem key={id} heading={title} date={updated_at ? new Date(updated_at).toLocaleDateString() : new Date()} />
                   ) : null;
                 })}
             </Stack>
