@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styles from "./Start.module.css";
 import { Stack } from "../Stack/Stack";
+import { Link } from "react-router-dom";
 
 export const Start: FC = () => {
   return (
@@ -12,7 +13,7 @@ export const Start: FC = () => {
         </div>
         <Stack>
           <h3>Let's get started</h3>
-          <button type="button">Add a new note</button>
+          <Link to="/note" className="button">Add a new note</Link>
         </Stack>
       </Stack>
     </div>
