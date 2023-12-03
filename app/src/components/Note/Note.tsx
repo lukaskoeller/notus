@@ -1,14 +1,16 @@
 import { FC } from "react";
-import { MarkDoc } from "../MarkDoc/MarkDoc";
-import { useEditor } from "../../hooks/useEditor";
-import { NoteTextArea } from "../NoteTextArea/NoteTextArea";
+import styles from "./Note.module.css";
+import { Header } from "../Header/Header";
+import { Editor } from "../Editor/Editor";
+import { Note as TNote } from "../../api";
 
-export const Note: FC = () => {
-  const { mode } = useEditor();
-  
+export type NoteProps = Pick<TNote, 'content'>;
+
+export const Note: FC<NoteProps> = ({ content }) => {
   return (
-    mode === 'preview'
-      ? <MarkDoc />
-      : <NoteTextArea />
-  );
+    <main className={styles.main}>
+      <Header />
+      <Editor content={content} />
+    </main>
+  )
 };
