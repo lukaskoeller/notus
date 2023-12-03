@@ -1,16 +1,12 @@
 import Markdoc from "@markdoc/markdoc";
 import React, { FC } from "react";
 import styles from "./MarkDoc.module.css";
-import { useParams } from "react-router-dom";
-import { useNote } from "../../data";
+import { Note } from "../../api";
 
-export const MarkDoc: FC = () => {
-  const { noteTitle } = useParams<{ noteTitle: string }>();
-  const { data: note, isLoading } = useNote(noteTitle);
+export type MarkDocProps = Pick<Note, 'content'>;
 
-  if (isLoading) return null;
-
-  const ast = Markdoc.parse(note?.content);
+export const MarkDoc: FC<MarkDocProps> = ({ content = '' }) => {
+  const ast = Markdoc.parse(content);
   const markdown = Markdoc.transform(ast);
 
   return (
