@@ -25,12 +25,12 @@ export class DefaultService {
     /**
      * Get Note
      * @param title
-     * @returns any Successful Response
+     * @returns Note Successful Response
      * @throws ApiError
      */
     public static getNoteNoteTitleGet(
         title: string,
-    ): CancelablePromise<any> {
+    ): CancelablePromise<Note> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/note/{title}',
