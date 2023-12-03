@@ -8,8 +8,6 @@ export type EditorProps = Partial<Pick<Note, 'content'>>;
 
 export const Editor: FC<EditorProps> = ({ content = '' }) => {
   const { mode } = useEditor();
-  console.log(content);
-  
   
   return (
     mode === 'preview'
