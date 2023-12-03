@@ -1,14 +1,17 @@
-import { FC } from "react";
-import styles from "./Main.module.css";
-import { Header } from "../Header/Header";
-import { Note } from "../Note/Note";
+import { FC } from 'react';
+import { Note } from '../Note/Note';
+import { useParams } from 'react-router-dom';
+import { useNote } from '../../data';
 
 export const Main: FC = () => {
+  const { noteTitle } = useParams<{ noteTitle: string }>();
+  const { data: note, isLoading, isSuccess } = useNote(noteTitle);
 
-  return (
-    <main className={styles.main}>
-      <Header />
-      <Note />
-    </main>
+  if (isLoading) return null;
+
+  if (isSuccess) return (
+    <Note content={note.content} />
   )
+
+  return null;
 };
