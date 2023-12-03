@@ -1,11 +1,10 @@
 import { ChangeEvent, FC } from "react";
 import styles from "./NoteTextArea.module.css";
-import { useParams } from "react-router-dom";
-import { useNote } from "../../data";
+import { Note } from "../../api";
 
-export const NoteTextArea: FC = () => {
-  const { noteTitle } = useParams<{ noteTitle: string }>();
-  const { data: note } = useNote(noteTitle);
+export type NoteTextAreaProps = Pick<Note, 'content'>;
+
+export const NoteTextArea: FC<NoteTextAreaProps> = ({ content = '' }) => {
 
   const handleChange = (e: ChangeEvent) => {
     const value = (e.target as HTMLTextAreaElement).value;
@@ -13,6 +12,6 @@ export const NoteTextArea: FC = () => {
   }
 
   return (
-    <textarea className={styles.textarea} value={note?.content ?? ''} onChange={handleChange} />
+    <textarea className={styles.textarea} value={content} onChange={handleChange} />
   );
 }
