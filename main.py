@@ -21,6 +21,11 @@ class Note(SQLModel, table=True):
     created_at: Annotated[datetime | None, Body()] = None
     updated_at: Annotated[datetime | None, Body()] = None
 
+class NoteUpdate(SQLModel):
+    title: Optional[str] = None
+    file_name: Optional[str] = None
+    content: Optional[str] = None
+
 sqlite_file_name = "database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
 
@@ -59,7 +64,7 @@ def get_notes():
         notes = session.exec(select(Note)).all()
         return notes
 
-@app.get("/note/{title}")
+@app.get("/note/{title}", response_model=Note)
 def get_note(title: str):
     with Session(engine) as session:
         statement = select(Note).where(Note.title == title)
@@ -81,16 +86,19 @@ def create_note(note: Note):
         session.refresh(note)
         return note
 
-@app.put("/note/{id}")
-def update_note(note: Note):
-    note.updated_at = datetime.now()
+@app.patch("/note/{title}")
+def update_note(title: str, note: NoteUpdate):
     with Session(engine) as session:
-        statement = select(Note).where(Note.id == note.id)
-        results = exec(statement)
-        current_note = results.one()
-        note.id = current_note.id
-
-        session.add(note)
+        statement = select(Note).where(Note.title == title)
+        results = session.exec(statement)
+        db_note = results.one()
+        if not db_note:
+            raise HTTPException(status_code=404, detail="Note not found")
+        note_data = note.model_dump(exclude_unset=True)
+        for key, value in note_data.items():
+            setattr(db_note, key, value)
+        setattr(db_note, 'updated_at', datetime.now())
+        session.add(db_note)
         session.commit()
-        session.refresh(note)
-        return note
+        session.refresh(db_note)
+        return db_note
