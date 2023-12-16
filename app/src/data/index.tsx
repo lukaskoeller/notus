@@ -3,8 +3,7 @@ import { DefaultService, Note, NoteUpdate } from "../api";
 
 export const useNotes = () => useQuery({ queryKey: ['notes'], queryFn: async () => await DefaultService.getNotesNotesGet() });
 
-export const useNote = (idStr: string | undefined) => {
-  const id = Number(idStr);
+export const useNote = (id: Note["id"]) => {
   if (!id) {
     throw new Error(`Could not find note "${id}"`, { cause: `'id' (${id}) is not defined but must be to query the note.` });
   }

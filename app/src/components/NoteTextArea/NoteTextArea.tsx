@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 export const NoteTextArea: FC = () => {
   const { noteId } = useParams<{ noteId: string }>();
-  const { data: note, isLoading, isSuccess } = useNote(noteId);
+  const { data: note, isLoading, isSuccess } = useNote(Number(noteId));
   const [text, setText] = useState(note?.content ?? '');
   const mutationNote = useUpdateNote();
 
