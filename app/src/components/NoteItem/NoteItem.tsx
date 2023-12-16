@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styles from "./NoteItem.module.css";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export type NoteItemProps = {
   heading: string;
