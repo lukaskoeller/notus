@@ -1,5 +1,6 @@
 from typing import Optional, List, Annotated, Type
 
+from contextlib import asynccontextmanager
 from fastapi import Body, FastAPI, HTTPException
 from datetime import datetime
 from fastapi.middleware.cors import CORSMiddleware
@@ -46,9 +47,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.on_event("startup")
-def on_startup():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     create_db_and_tables()
+    yield
+    # Add code here for clean up 
 
 @app.get("/notes/", response_model=List[Note])
 def get_notes():
