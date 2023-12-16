@@ -64,12 +64,10 @@ def get_notes():
         notes = session.exec(select(Note)).all()
         return notes
 
-@app.get("/note/{title}", response_model=Note)
-def get_note(title: str):
+@app.get("/note/{id}", response_model=Note)
+def get_note(id: int):
     with Session(engine) as session:
-        statement = select(Note).where(Note.title == title)
-        results = session.exec(statement)
-        note = results.one()
+        note = session.get(Note, id)
         if not note:
             raise HTTPException(status_code=404, detail="Note not found")
         return note
@@ -86,12 +84,10 @@ def create_note(note: Note):
         session.refresh(note)
         return note
 
-@app.patch("/note/{title}")
-def update_note(title: str, note: NoteUpdate):
+@app.patch("/note/{id}")
+def update_note(id: int, note: NoteUpdate):
     with Session(engine) as session:
-        statement = select(Note).where(Note.title == title)
-        results = session.exec(statement)
-        db_note = results.one()
+        db_note = session.get(Note, id)
         if not db_note:
             raise HTTPException(status_code=404, detail="Note not found")
         note_data = note.model_dump(exclude_unset=True)
