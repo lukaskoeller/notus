@@ -20,7 +20,7 @@ export const NoteTextArea: FC = () => {
       const title = value.split('\n')?.[0]?.slice(2) ?? '';
       
       if (noteId) {
-        mutationNote.mutate({ content: value, title: title });
+        mutationNote.mutate({ content: value, title: title, id: Number(noteId) });
       }
     }
   
