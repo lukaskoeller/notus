@@ -1,6 +1,5 @@
 import { FC } from "react";
 import styles from './Aside.module.css';
-import { Card } from "../Card/Card";
 import { NoteItem } from "../NoteItem/NoteItem";
 import { Stack } from "../Stack/Stack";
 import { useSideNav } from "../../hooks/useSideNav";
@@ -20,17 +19,14 @@ export const Aside: FC = () => {
             <span>Loading…</span>
           ) : (
             <Stack gap="0">
-              {(notes ?? [])?.map(({ id, title, updated_at }) => {
+              {(notes ?? [])?.map(({ id, updated_at, title }) => {
                 return id ? (
-                  <NoteItem key={id} heading={title} date={updated_at ? new Date(updated_at).toLocaleDateString() : new Date()} />
+                  <NoteItem key={id} id={id} title={title} updated_at={new Date(updated_at ?? '').toLocaleDateString([], { day: 'numeric', month: 'short', year: 'numeric' })} />
                   ) : null;
                 })}
             </Stack>
           )}
         </div>
-        <Card>
-          Tags
-        </Card>
       </nav>
       <button
         className={styles.closeBtn}
