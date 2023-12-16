@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type UpdateNote = {
+export type NoteUpdate = {
     title?: string;
     file_name?: string;
     content?: string;

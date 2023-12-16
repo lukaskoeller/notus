@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { Note } from '../models/Note';
-import type { UpdateNote } from '../models/UpdateNote';
+import type { NoteUpdate } from '../models/NoteUpdate';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -25,18 +25,18 @@ export class DefaultService {
 
     /**
      * Get Note
-     * @param title
+     * @param id
      * @returns Note Successful Response
      * @throws ApiError
      */
-    public static getNoteNoteTitleGet(
-        title: string,
+    public static getNoteNoteIdGet(
+        id: number,
     ): CancelablePromise<Note> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/note/{title}',
+            url: '/note/{id}',
             path: {
-                'title': title,
+                'id': id,
             },
             errors: {
                 422: `Validation Error`,
@@ -46,20 +46,20 @@ export class DefaultService {
 
     /**
      * Update Note
-     * @param title
+     * @param id
      * @param requestBody
      * @returns any Successful Response
      * @throws ApiError
      */
-    public static updateNoteNoteTitlePatch(
-        title: string,
-        requestBody: UpdateNote,
+    public static updateNoteNoteIdPatch(
+        id: number,
+        requestBody: NoteUpdate,
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'PATCH',
-            url: '/note/{title}',
+            url: '/note/{id}',
             path: {
-                'title': title,
+                'id': id,
             },
             body: requestBody,
             mediaType: 'application/json',
