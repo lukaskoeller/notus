@@ -29,7 +29,6 @@ export const EditorProvider: FC<{ children: React.ReactNode }> = ({ children }) 
   const [title, setTitle] = useState<string>('');
   const [treeNode, setTreeNode] = useState<RenderableTreeNode>('');
   const { data: notes } = useNotes();
-  
 
   useEffect(() => {
     const activeNote = (notes ?? []).find((note) => note.id === activeId);
