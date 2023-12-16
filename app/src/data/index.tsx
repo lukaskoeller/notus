@@ -28,15 +28,15 @@ export const useUpdateNote = () => {
     await queryClient.cancelQueries({ queryKey: ['notes', 'note', newNote.id] });
 
     // Snapshot the previous value
-    const previousNote = queryClient.getQueryData(['note', newNote.id]);
+    const previousNote = queryClient.getQueryData(['notes', 'note', newNote.id]);
 
     // Optimistically update to the new value
-    queryClient.setQueryData(['note', newNote.id], newNote)
+    queryClient.setQueryData(['notes', 'note', newNote.id], newNote)
 
     return { previousNote, newNote }
   },
   onError: (_err, newNote, context) => {
-    queryClient.setQueryData(['note', newNote.id], context?.previousNote)
+    queryClient.setQueryData(['notes', 'note', newNote.id], context?.previousNote)
   },
   onSettled: (note) => queryClient.invalidateQueries({ queryKey: ['notes', 'note', note.id] }),
 });
