@@ -1,8 +1,6 @@
 @import "open-props/postcss/style";
 @import "open-props/postcss/normalize";
 @import "open-props/buttons";
-@import "open-props/oklch-hues";
-@import "open-props/gray-hd";
 
 /** @see https://codepen.io/argyleink/pen/eYxJJbr */
 
