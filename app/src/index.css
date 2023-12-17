@@ -10,6 +10,7 @@
   --palette-hue: 140;            /* <angle */
   --palette-hue-rotate-by: -2;   /* +- deg : warm or cool the palette */
   --palette-chroma: 1;         /* 0-1 : lower to mute and pastel, over 2 at own risk */
+  --palette-neutral-divider: 6;
 }
 
 * {
@@ -30,12 +31,26 @@
   --color-14: oklch(20% calc(.09 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (13 * var(--palette-hue-rotate-by))));
   --color-15: oklch(16% calc(.07 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (14 * var(--palette-hue-rotate-by))));
   --color-16: oklch(10% calc(.05 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (15 * var(--palette-hue-rotate-by))));
+
+  --color-neutral-1:  oklch(98% calc(.03 * calc(var(--palette-chroma, 1) / var(--palette-neutral-divider))) calc(var(--palette-hue) + (0 * var(--palette-hue-rotate-by))));
+  --color-neutral-2:  oklch(97% calc(.06 * calc(var(--palette-chroma, 1) / var(--palette-neutral-divider))) calc(var(--palette-hue) + (1 * var(--palette-hue-rotate-by))));
+  --color-neutral-3:  oklch(93% calc(.10 * calc(var(--palette-chroma, 1) / var(--palette-neutral-divider))) calc(var(--palette-hue) + (2 * var(--palette-hue-rotate-by))));
+  --color-neutral-4:  oklch(84% calc(.12 * calc(var(--palette-chroma, 1) / var(--palette-neutral-divider))) calc(var(--palette-hue) + (3 * var(--palette-hue-rotate-by))));
+  --color-neutral-5:  oklch(80% calc(.16 * calc(var(--palette-chroma, 1) / var(--palette-neutral-divider))) calc(var(--palette-hue) + (4 * var(--palette-hue-rotate-by))));
+  --color-neutral-6:  oklch(71% calc(.19 * calc(var(--palette-chroma, 1) / var(--palette-neutral-divider))) calc(var(--palette-hue) + (5 * var(--palette-hue-rotate-by))));
+  --color-neutral-7:  oklch(66% calc(.20 * calc(var(--palette-chroma, 1) / var(--palette-neutral-divider))) calc(var(--palette-hue) + (6 * var(--palette-hue-rotate-by))));
+  --color-neutral-8:  oklch(58% calc(.21 * calc(var(--palette-chroma, 1) / var(--palette-neutral-divider))) calc(var(--palette-hue) + (7 * var(--palette-hue-rotate-by))));
+  --color-neutral-9:  oklch(53% calc(.20 * calc(var(--palette-chroma, 1) / var(--palette-neutral-divider))) calc(var(--palette-hue) + (8 * var(--palette-hue-rotate-by))));
+  --color-neutral-10: oklch(49% calc(.19 * calc(var(--palette-chroma, 1) / var(--palette-neutral-divider))) calc(var(--palette-hue) + (9 * var(--palette-hue-rotate-by))));
+  --color-neutral-11: oklch(42% calc(.17 * calc(var(--palette-chroma, 1) / var(--palette-neutral-divider))) calc(var(--palette-hue) + (10 * var(--palette-hue-rotate-by))));
+  --color-neutral-12: oklch(35% calc(.15 * calc(var(--palette-chroma, 1) / var(--palette-neutral-divider))) calc(var(--palette-hue) + (11 * var(--palette-hue-rotate-by))));
+  --color-neutral-13: oklch(27% calc(.12 * calc(var(--palette-chroma, 1) / var(--palette-neutral-divider))) calc(var(--palette-hue) + (12 * var(--palette-hue-rotate-by))));
+  --color-neutral-14: oklch(20% calc(.09 * calc(var(--palette-chroma, 1) / var(--palette-neutral-divider))) calc(var(--palette-hue) + (13 * var(--palette-hue-rotate-by))));
+  --color-neutral-15: oklch(16% calc(.07 * calc(var(--palette-chroma, 1) / var(--palette-neutral-divider))) calc(var(--palette-hue) + (14 * var(--palette-hue-rotate-by))));
+  --color-neutral-16: oklch(10% calc(.05 * calc(var(--palette-chroma, 1) / var(--palette-neutral-divider))) calc(var(--palette-hue) + (15 * var(--palette-hue-rotate-by))));
 }
 
 * {
-  --gray-hue: var(--hue-green);
-  --gray-chroma: .05;
-
   accent-color: var(--surface-4);
   outline-color: var(--surface-4);
 }
@@ -48,7 +63,7 @@ html {
   --well-1: var(--color-15);
   --well-2: var(--color-16);
   --text-1: var(--color-1);
-  --text-2: var(--color-5);
+  --text-2: var(--color-4);
   
   color-scheme: dark;
 
@@ -57,18 +72,18 @@ html {
 
 @media (prefers-color-scheme: light) {
   html {
-    --surface-1: white;
-    --surface-2: var(--color-1);
-    --surface-3: var(--color-3);
-    --surface-document: var(--color-4);
+    --surface-1: var(--color-neutral-1);
+    --surface-2: var(--color-neutral-2);
+    --surface-3: var(--color-neutral-3);
+    --surface-document: var(--color-neutral-4);
     --well-1: var(--color-5);
     --well-2: var(--color-6);
-    --text-1: var(--color-16);
+    --text-1: var(--color-14);
     --text-2: var(--color-12);
     
     color-scheme: light;
 
-    background-color: var(--surface-1);
+    background-color: var(--color-1);
   }
 }
 
