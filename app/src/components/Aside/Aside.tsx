@@ -5,6 +5,7 @@ import { Stack } from "../Stack/Stack";
 import { useSideNav } from "../../hooks/useSideNav";
 import { Search } from "../Search/Search";
 import { useNotes } from "../../data";
+import { NewNoteItem } from "../NewNoteItem/NewNoteItem";
 
 export const Aside: FC = () => {
   const { open, closeSideNav } = useSideNav();
@@ -19,11 +20,12 @@ export const Aside: FC = () => {
             <span>Loading…</span>
           ) : (
             <Stack gap="0">
+              <NewNoteItem key="new" />
               {(notes ?? [])?.map(({ id, updated_at, title }) => {
                 return id ? (
                   <NoteItem key={id} id={id} title={title} updated_at={new Date(updated_at ?? '').toLocaleDateString([], { day: 'numeric', month: 'short', year: 'numeric' })} />
                   ) : null;
-                })}
+              })}
             </Stack>
           )}
         </div>
