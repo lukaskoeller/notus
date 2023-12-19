@@ -6,9 +6,7 @@ import { useParams } from "react-router-dom";
 
 export const MarkDoc: FC = () => {
   const { noteId } = useParams<{ noteId: string }>();
-  console.log(noteId);
-  
-  const { data: note, isLoading, isSuccess } = useNote(noteId);
+  const { data: note, isLoading, isSuccess } = useNote(Number(noteId));
   
   if (isLoading) return (
     <h2>Loading…</h2>
@@ -24,4 +22,4 @@ export const MarkDoc: FC = () => {
   }
 
   return null;
-};
+}
