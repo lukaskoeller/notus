@@ -2,8 +2,4 @@
   display: grid;
   justify-items: start;
   gap: var(--size-3);
-
-  > * + * {
-    /* border-block-start: 1px solid var(--surface-3); */
-  }
 }
