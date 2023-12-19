@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi import Body, FastAPI, HTTPException
 from datetime import datetime
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 from re import sub
 
@@ -25,6 +26,10 @@ class NoteUpdate(SQLModel):
     title: Optional[str] = None
     file_name: Optional[str] = None
     content: Optional[str] = None
+
+class NoteCreate(SQLModel):
+    title: str
+    content: str
 
 sqlite_file_name = "database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
@@ -73,16 +78,14 @@ def get_note(id: int):
         return note
 
 @app.post("/note/")
-def create_note(note: Note):
+def create_note(note: NoteCreate):
     timestamp = datetime.now()
-    note.created_at = timestamp
-    note.updated_at = timestamp
-    note.file_name = toKebab(note.title)
+    new_note = Note(title=note.title, content=note.content, created_at=timestamp, updated_at=timestamp, file_name=toKebab(note.title))
     with Session(engine) as session:
-        session.add(note)
+        session.add(new_note)
         session.commit()
-        session.refresh(note)
-        return note
+        session.refresh(new_note)
+        return RedirectResponse('{origin}/note/{id}'.format(origin=origins[0], id=new_note.id))
 
 @app.patch("/note/{id}")
 def update_note(id: int, note: NoteUpdate):
