@@ -3,6 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { Note } from '../models/Note';
+import type { NoteCreate } from '../models/NoteCreate';
 import type { NoteUpdate } from '../models/NoteUpdate';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -76,7 +77,7 @@ export class DefaultService {
      * @throws ApiError
      */
     public static createNoteNotePost(
-        requestBody: Note,
+        requestBody: NoteCreate,
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',

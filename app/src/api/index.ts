@@ -9,6 +9,7 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { HTTPValidationError } from './models/HTTPValidationError';
 export type { Note } from './models/Note';
+export type { NoteCreate } from './models/NoteCreate';
 export type { NoteUpdate } from './models/NoteUpdate';
 export type { ValidationError } from './models/ValidationError';
 
