@@ -14,6 +14,27 @@ export const useNote = (id: Note["id"]) => {
   });
 }
 
+
+export const useCreateNote = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (title: Note["title"]) => {
+      return DefaultService.createNoteNotePost({
+        title,
+        content: `# ${title}`,
+      })
+    },
+    onMutate: async (newNote: Note["title"]) => {
+      // Optimistically update to the new value
+      queryClient.setQueryData(['notes', 'note'], newNote)
+
+      return { newNote };
+    },
+    onSettled: () => queryClient.invalidateQueries({ queryKey: ['notes', 'note'] }),
+  });
+}
+
 export const useUpdateNote = () => {
   const queryClient = useQueryClient();
 
