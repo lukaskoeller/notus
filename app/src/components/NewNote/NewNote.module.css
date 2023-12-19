@@ -1,0 +1,35 @@
+.container {
+  padding: var(--size-3);
+  
+  @media (--md-n-above) {
+    padding: var(--size-fluid-5);
+  }
+
+  @media (--md-n-below) {
+    grid-area: stack;
+  }
+}
+
+.form {
+  inline-size: 100%;
+}
+
+.formField {
+  inline-size: 100%;
+
+  & label {
+    display: block;
+    font-weight: var(--font-weight-6);
+    font-size: var(--font-size-3);
+  }
+}
+
+.input {
+  inline-size: min(100%, var(--size-content-2));
+  font-size: var(--font-size-5);
+  /* background-color: var(--surface-3); */
+  background-color: transparent;
+  border: var(--border-size-3) solid var(--surface-3);
+  border-radius: var(--radius-3);
+  padding: var(--size-2) var(--size-5);
+}
