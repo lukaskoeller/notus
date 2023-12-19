@@ -1,6 +1,6 @@
 @import "open-props/postcss/style";
 @import "open-props/postcss/normalize";
-@import "open-props/buttons";
+@import "open-props/postcss/buttons";
 
 /** @see https://codepen.io/argyleink/pen/eYxJJbr */
 
@@ -11,7 +11,7 @@
   --palette-neutral-divider: 6;
 }
 
-* {
+:root {
   --color-max: oklch(65% .3 var(--palette-hue));
   --color-1:  oklch(98% calc(.03 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (0 * var(--palette-hue-rotate-by))));
   --color-2:  oklch(97% calc(.06 * var(--palette-chroma, 1)) calc(var(--palette-hue) + (1 * var(--palette-hue-rotate-by))));
@@ -49,8 +49,8 @@
 }
 
 * {
-  accent-color: var(--surface-4);
-  outline-color: var(--surface-4);
+  accent-color: var(--surface-3);
+  outline-color: var(--surface-3);
 }
 
 html {
@@ -62,6 +62,8 @@ html {
   --well-2: var(--color-16);
   --text-1: var(--color-1);
   --text-2: var(--color-4);
+  --link: var(--color-6);
+  --link-visited: var(--link);
   
   color-scheme: dark;
 
@@ -78,6 +80,8 @@ html {
     --well-2: var(--color-6);
     --text-1: var(--color-14);
     --text-2: var(--color-12);
+    --link: var(--color-6);
+    --link-visited: var(--link);
     
     color-scheme: light;
 
@@ -92,4 +96,8 @@ html {
 
 :where(h1, h2, h3, h4, h5, h6) {
   font-weight: var(--font-weight-5);
+}
+
+button {
+  --_text: var(--color-5);
 }
