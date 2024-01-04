@@ -44,6 +44,12 @@ To watch for changes, run the command with the [`--reload`](https://sqlmodel.tia
 
 The backend will run on port `8000`.
 
+To deactivate the virtual environment, run:
+
+```sh
+deactivate
+```
+
 Open a new terminal and run the web app:
 
 ```sh
