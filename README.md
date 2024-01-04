@@ -8,6 +8,14 @@ This is a simple notes app using markdown.
 
 ## Gettings started
 
+On the first time, create a virtual environment:
+
+```sh
+python3 -m venv env
+```
+
+This creates a virtual environment in the `./env` directory which is also added to `.gitignore`.
+
 Start the virtual environment:
 
 ```sh
