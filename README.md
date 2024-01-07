@@ -31,7 +31,7 @@ which python
 On the first time, install dependencies:
 
 ```sh
-python -m pip install fastapi "uvicorn[standard]"
+python -m pip install fastapi "uvicorn[standard]" sqlmodel
 ```
 
 Run the application:
