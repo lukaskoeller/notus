@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
 import styles from "./NewNoteItem.module.css";
+import { Link } from "@tanstack/react-router";
 
 export const NewNoteItem: FC = () => {
   return (

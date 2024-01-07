@@ -1,10 +1,10 @@
 import { ChangeEvent, FC, useState } from "react";
 import styles from "./NoteTextArea.module.css";
 import { useNote, useUpdateNote } from "../../data";
-import { useParams } from "react-router-dom";
+import { noteRoute } from "../../router";
 
 export const NoteTextArea: FC = () => {
-  const { noteId } = useParams<{ noteId: string }>();
+  const { noteId } = noteRoute.useParams();
   const { data: note, isLoading, isSuccess } = useNote(Number(noteId));
   const [text, setText] = useState(note?.content ?? '');
   const mutationNote = useUpdateNote();

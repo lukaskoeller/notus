@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 import styles from "./NoteItem.module.css";
-import { NavLink } from "react-router-dom";
 import { Note } from "../../api";
+import { Link } from "@tanstack/react-router";
 
 export type NoteItemProps = Pick<Note, 'updated_at' | 'id' | 'title'> & {
   preTab?: ReactNode;
@@ -16,7 +16,14 @@ export const NoteItem: FC<NoteItemProps> = (props) => {
   } = props;
 
   return (
-    <NavLink to={`/note/${id}`} className={styles.item}>
+    <Link
+      to="/note/$noteId"
+      params={{
+        noteId: String(id),
+      }}
+      activeProps={{ className: styles.active }}
+      className={styles.item}
+    >
       <div className={styles.pretab}>{preTab}</div>
       <div className={styles.main}>
         <h2 className={styles.heading}>{title}</h2>
@@ -24,6 +31,6 @@ export const NoteItem: FC<NoteItemProps> = (props) => {
           {updated_at}
         </span>
       </div>
-    </NavLink>
+    </Link>
   );
 }

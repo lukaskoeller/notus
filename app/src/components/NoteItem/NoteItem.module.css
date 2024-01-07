@@ -31,7 +31,7 @@
   border-block-end: var(--border-size-1) solid var(--surface-3);
 }
 
-.item:has(+ :global(.active)) .main {
+.item:has(+ .active) .main {
   border-block-end: var(--border-size-1) solid transparent;
 }
 

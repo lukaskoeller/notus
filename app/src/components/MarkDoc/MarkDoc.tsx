@@ -2,10 +2,10 @@ import Markdoc from "@markdoc/markdoc";
 import React, { FC } from "react";
 import styles from "./MarkDoc.module.css";
 import { useNote } from "../../data";
-import { useParams } from "react-router-dom";
+import { noteRoute } from "../../router";
 
 export const MarkDoc: FC = () => {
-  const { noteId } = useParams<{ noteId: string }>();
+  const { noteId } = noteRoute.useParams();
   const { data: note, isLoading, isSuccess } = useNote(Number(noteId));
   
   if (isLoading) return (

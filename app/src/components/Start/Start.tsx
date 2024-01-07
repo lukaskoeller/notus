@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styles from "./Start.module.css";
 import { Stack } from "../Stack/Stack";
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 
 export const Start: FC = () => {
   return (
