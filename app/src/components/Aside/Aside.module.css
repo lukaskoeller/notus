@@ -4,7 +4,8 @@
   display: grid;
   align-items: start;
   padding: var(--size-3);
-  /* block-size: 100svh; */
+  block-size: 100svh;
+  overflow-y: auto;
   inline-size: calc(var(--size-fluid-10));
   z-index: 1;
 
@@ -29,7 +30,7 @@
       visibility 0s linear var(--duration);
     padding-inline-end: 0;
     background: hsl(var(--surface-1) / 30%);
-    backdrop-filter: blur(var(--size-2));
+    backdrop-filter: blur(var(--size-5));
 
     &[data-open="true"] {
       visibility: visible;
