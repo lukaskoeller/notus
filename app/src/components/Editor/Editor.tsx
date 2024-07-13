@@ -1,13 +1,13 @@
 import { FC } from "react";
 import { MarkDoc } from "../MarkDoc/MarkDoc";
-import { useEditor } from "../../hooks/useEditor";
 import { NoteTextArea } from "../NoteTextArea/NoteTextArea";
+import { useSearch } from "@tanstack/react-router";
 
 export const Editor: FC = () => {
-  const { mode } = useEditor();
+  const { mode } = useSearch({ from: "/note/$noteId" })
   
   return (
-    mode === 'preview'
+    mode === 'view'
       ? <MarkDoc />
       : <NoteTextArea />
   );
