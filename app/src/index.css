@@ -51,6 +51,7 @@
 * {
   accent-color: var(--surface-3);
   outline-color: var(--surface-3);
+  box-sizing: border-box;
 }
 
 html {
