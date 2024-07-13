@@ -14,8 +14,8 @@
     border-block-end: none;
   }
 
-  /** @see https://reactrouter.com/en/main/components/nav-link#:~:text=By%20default%2C%20an%20active%20class%20is%20added%20to%20a%20%3CNavLink%3E%20component%20when%20it%20is%20active */
-  &:global(.active) {
+  /** @see https://tanstack.com/router/latest/docs/framework/react/guide/navigation#active--inactive-props */
+  &.active {
     background-color: var(--surface-3);
   }
 }

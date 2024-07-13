@@ -18,6 +18,9 @@ export const NoteItem: FC<NoteItemProps> = (props) => {
   return (
     <Link
       to="/note/$noteId"
+      search={{
+        mode: "view"
+      }}
       params={{
         noteId: String(id),
       }}
