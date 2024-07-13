@@ -4,8 +4,8 @@
 /* eslint-disable */
 
 export type NoteUpdate = {
-    title?: string;
-    file_name?: string;
-    content?: string;
+  title?: (string | null);
+  file_name?: (string | null);
+  content?: (string | null);
 };
 

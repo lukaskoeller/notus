@@ -4,11 +4,11 @@
 /* eslint-disable */
 
 export type Note = {
-    id?: number;
-    title: string;
-    file_name?: string;
-    content: string;
-    created_at?: string;
-    updated_at?: string;
+  id?: number;
+  title: string;
+  file_name: (string | null);
+  content: string;
+  created_at: string;
+  updated_at: string;
 };
 

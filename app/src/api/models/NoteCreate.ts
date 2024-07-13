@@ -4,7 +4,7 @@
 /* eslint-disable */
 
 export type NoteCreate = {
-    title: string;
-    content: string;
+  title: string;
+  content: string;
 };
 
