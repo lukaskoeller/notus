@@ -1,10 +1,10 @@
-from typing import Optional, List, Annotated, Type
+from typing import Optional, List
 
 from contextlib import asynccontextmanager
-from fastapi import Body, FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException
 from datetime import datetime
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import RedirectResponse
+from fastapi.responses import Response
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 from re import sub
 
@@ -15,14 +15,15 @@ def toKebab(s):
     lambda mo: ' ' + mo.group(0).lower(), s)).split())
 
 class Note(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
+    id: int = Field(default=None, primary_key=True)
     title: str = Field(index=True)
     file_name: Optional[str]
     content: str
-    created_at: Annotated[datetime | None, Body()] = None
-    updated_at: Annotated[datetime | None, Body()] = None
+    created_at: datetime
+    updated_at: datetime
 
 class NoteUpdate(SQLModel):
+    id: int
     title: Optional[str] = None
     file_name: Optional[str] = None
     content: Optional[str] = None
@@ -78,14 +79,14 @@ def get_note(id: int):
         return note
 
 @app.post("/note/")
-def create_note(note: NoteCreate):
+async def create_note(note: NoteCreate):
     timestamp = datetime.now()
     new_note = Note(title=note.title, content=note.content, created_at=timestamp, updated_at=timestamp, file_name=toKebab(note.title))
     with Session(engine) as session:
         session.add(new_note)
         session.commit()
         session.refresh(new_note)
-        return RedirectResponse('{origin}/note/{id}'.format(origin=origins[0], id=new_note.id))
+        return new_note
 
 @app.patch("/note/{id}")
 def update_note(id: int, note: NoteUpdate):
