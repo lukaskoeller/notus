@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, InputHTMLAttributes, useCallback } from "react";
 import styles from "./PreviewWriteSwitch.module.css";
-import { useEditor } from "../../hooks/useEditor";
-import { ViewMode } from "../../contexts/editor";
+import { useNavigate, useSearch } from "@tanstack/react-router";
+import { TNoteSearch } from "../../router";
 
 export type SwitchGroupItemProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
@@ -39,30 +39,31 @@ const SwitchGroupItem: FC<SwitchGroupItemProps> = (props) => {
 };
 
 export const PreviewWriteSwitch: FC = () => {
-  const { mode, setMode } = useEditor();
+  const { mode } = useSearch({ from: "/note/$noteId" });
+  const navigate = useNavigate({ from: "/note/$noteId" });
 
-  const handleChange = useCallback((e: ChangeEvent) => {
-    const value = (e.target as HTMLInputElement).value;
-    setMode(value as ViewMode);
-  }, [setMode]);
+  const handleChange = useCallback(async (e: ChangeEvent) => {
+    const value = (e.target as HTMLInputElement).value as TNoteSearch['mode'];
+    await navigate({ search: { mode: value } });
+  }, [navigate]);
 
   return (
     <fieldset className={styles.fieldset}>
-      <legend className={styles.legend}>Write / Edit</legend>
+      <legend className={styles.legend}>View / Edit</legend>
       <SwitchGroupItem
         name="mode"
-        id="mode-preview"
-        value="preview"
-        label="Preview"
-        checked={mode === 'preview'}
+        id="mode-view"
+        value="view"
+        label="view"
+        checked={mode === 'view'}
         onChange={handleChange}
       />
       <SwitchGroupItem
         name="mode"
-        id="mode-write"
-        value="write"
-        label="Write"
-        checked={mode === 'write'}
+        id="mode-edit"
+        value="edit"
+        label="edit"
+        checked={mode === 'edit'}
         onChange={handleChange}
       />
     </fieldset>
