@@ -5,9 +5,11 @@ import { Editor } from "../Editor/Editor";
 
 export const Note: FC = () => {
   return (
-    <main className={styles.main}>
-      <Header />
-      <Editor />
-    </main>
-  )
+    <div className={styles.wrapper}>
+      <main className={styles.main}>
+        <Header />
+        <Editor />
+      </main>
+    </div>
+  );
 };

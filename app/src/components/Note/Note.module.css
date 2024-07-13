@@ -1,18 +1,26 @@
 @import "open-props/media";
 
-.main {
-  display: grid;
-  gap: var(--size-3);
-  grid-template-rows: auto 1fr;
+.wrapper {
+  block-size: 100svh;
+  overflow-y: auto;
   padding-inline: var(--size-7);
-  padding-block: var(--size-3);
-
-  & > * {
-    min-block-size: 0;
-  }
+  padding-block-start: var(--size-3);
+  padding-block-end: var(--size-7);
 
   @media (--md-n-below) {
     grid-area: stack;
     padding-inline: var(--size-3);
+  }
+}
+
+.main {
+  display: grid;
+  min-block-size: 100%;
+  gap: var(--size-3);
+  grid-template-rows: auto 1fr;
+
+  & > * {
+    min-block-size: 0;
+    min-inline-size: 0;
   }
 }
