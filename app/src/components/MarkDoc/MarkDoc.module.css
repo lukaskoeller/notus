@@ -32,9 +32,10 @@
     margin: 0;
     margin-block: var(--size-5);
     padding: var(--size-3);
-    background: var(--surface-2);
+    background: var(--surface-3);
     border-radius: var(--radius-2);
     word-wrap: normal;
+    overflow-x: auto;
   }
 
   & code {
