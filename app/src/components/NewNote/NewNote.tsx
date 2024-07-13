@@ -15,19 +15,19 @@ export const NewNote: FC = () => {
         <form
           className={styles.form}
           method="post"
-          onSubmit={(e: FormEvent<HTMLFormElement>) => {
+          onSubmit={async (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             const form = new FormData(e.target as HTMLFormElement);
             console.log(form, e);
             
             const title = form.get('title') as string;
 
-            createNote.mutate(title);
+            await createNote.mutateAsync(title);
           }}
         >
           <Stack>
             <div className={styles.formField}>
-              <label htmlFor="title">Titel</label>
+              <label htmlFor="title">Title</label>
               <input
                 className={styles.input}
                 type="text"
