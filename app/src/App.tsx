@@ -1,6 +1,6 @@
 import styles from './App.module.css';
 import { EditorProvider } from './contexts/editor';
-import { Router, RouterProvider } from "@tanstack/react-router";
+import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { indexRoute, newNoteRoute, noteRoute, rootRoute } from './router';
 import { OpenAPI } from './api';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -12,11 +12,17 @@ const apiUrl = import.meta.env.VITE_APP_API_URL;
 OpenAPI.BASE = apiUrl;
 
 // Create a client
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+    }
+  }
+});
 
 const routeTree = rootRoute.addChildren([indexRoute, newNoteRoute, noteRoute]);
 
-const router = new Router({ routeTree });
+const router = createRouter({ routeTree });
 
 declare module '@tanstack/react-router' {
   interface Register {
