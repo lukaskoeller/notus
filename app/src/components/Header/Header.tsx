@@ -3,16 +3,21 @@ import { useSideNav } from "../../hooks/useSideNav";
 import { ListIcon } from "../ListIcon/ListIcon";
 import styles from "./Header.module.css";
 import { PreviewWriteSwitch } from "../PreviewWriteSwitch/PreviewWriteSwitch";
+import { NewNoteItem } from "../NewNoteItem/NewNoteItem";
 
 export const Header: FC = () => {
-  const { showSideNav } = useSideNav();
+  const { showSideNav, open } = useSideNav();
   return (
-    <header className={styles.header}>
-        <button type="button">Save</button>
-        <button type="button" onClick={showSideNav}>
-          <ListIcon />
-        </button>
-        <PreviewWriteSwitch />
+    <header
+      className={styles.header}
+      {...{ inert: open ? '' : undefined }}
+    >
+      <button type="button" className={styles.menuBtn} onClick={showSideNav}>
+        <ListIcon />
+      </button>
+      <NewNoteItem />
+      <button type="button">Save</button>
+      <PreviewWriteSwitch />
     </header>
   );
 };
