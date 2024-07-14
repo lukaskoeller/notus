@@ -13,7 +13,7 @@ export const Start: FC = () => {
         </div>
         <Stack>
           <h3>Let's get started</h3>
-          <Link to="/note" className="button">Add a new note</Link>
+          <Link to="/note" className="btn">Add a new note</Link>
         </Stack>
       </Stack>
     </div>
