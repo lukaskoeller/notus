@@ -4,12 +4,6 @@
   gap: var(--size-3);
 }
 
-.open :is(button, input) {
-  @media (--md-n-below) {
-    pointer-events: none;
-  }
-}
-
 .menuBtn {
   display: none;
 
