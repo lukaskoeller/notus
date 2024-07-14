@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import styles from "./NoteTextArea.module.css";
-import { useNote, useUpdateNote } from "../../data";
-import { noteRoute } from "../../router";
+import { useApiReadNote } from "../../data";
+import { useUpdateNote } from "../../hooks/useUpdateNote";
 
 /**
  * Changes were applied
@@ -25,25 +25,14 @@ const useDebounce = (value: string, delay: number) => {
 };
 
 export const NoteTextArea: FC = () => {
-  const { noteId } = noteRoute.useParams();
-  const { data: note, isLoading, isSuccess } = useNote();
+  const { data: note, isLoading, isSuccess } = useApiReadNote();
   const [text, setText] = useState(note?.content ?? "");
   const debouncedText = useDebounce(text, 2500);
-  const { mutate: mutateNote } = useUpdateNote();
+  const updateNote = useUpdateNote();
 
   useEffect(() => {
-    const title = debouncedText.split("\n")?.[0]?.slice(2) ?? "";
-
-      if (noteId && debouncedText) {
-        mutateNote({
-          requestBody: {
-            content: debouncedText,
-            title: title,
-          },
-          id: Number(noteId),
-        });
-      }
-    }, [debouncedText, mutateNote, noteId]);
+    updateNote(debouncedText);
+  }, [debouncedText, updateNote]);
 
   if (isLoading) return <h2>Loading…</h2>;
 
