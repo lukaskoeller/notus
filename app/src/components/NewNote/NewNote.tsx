@@ -1,15 +1,15 @@
 import { FC, FormEvent } from "react";
 import styles from "./NewNote.module.css";
 import { Stack } from "../Stack/Stack";
-import { useCreateNote } from "../../data";
+import { useApiCreateNote } from "../../data";
 
 export const NewNote: FC = () => {
-  const createNote = useCreateNote();
+  const createNote = useApiCreateNote();
 
   return (
     <div className={styles.container}>
       <Stack gap="var(--size-9)">
-        <h1 className="btn">
+        <h1>
           Create note
         </h1>
         <form
