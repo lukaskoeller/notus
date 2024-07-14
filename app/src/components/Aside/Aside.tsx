@@ -3,11 +3,11 @@ import styles from "./Aside.module.css";
 import { NoteItem } from "../NoteItem/NoteItem";
 import { Stack } from "../Stack/Stack";
 import { useSideNav } from "../../hooks/useSideNav";
-import { useNotes } from "../../data";
+import { useApiReadNotes } from "../../data";
 
 export const Aside: FC = () => {
   const { open, closeSideNav } = useSideNav();
-  const { data: notes, isLoading } = useNotes();
+  const { data: notes, isLoading } = useApiReadNotes();
 
   return (
     <aside className={styles.aside} data-open={open}>
