@@ -5,9 +5,13 @@
   align-items: start;
   padding: var(--size-3);
   block-size: 100svh;
-  overflow-y: auto;
   inline-size: calc(var(--size-fluid-10));
   z-index: 1;
+  border-inline-end: var(--border-size-1) solid var(--surface-3);
+
+  & > * {
+    min-block-size: 0;
+  }
 
   @media (--md-n-below) {
     --duration: .3s;
@@ -52,6 +56,8 @@
   flex: 1 0;
   display: grid;
   row-gap: var(--size-3);
+  block-size: 100%;
+  overflow-y: auto;
 }
 
 .closeBtn {
@@ -62,6 +68,7 @@
   background-color: transparent;
   padding: 0;
   border-radius: var(--radius-3);
+  margin-inline-start: var(--size-2);
 
   @media (--md-n-above) {
     display: none;
