@@ -1,10 +1,10 @@
 import Markdoc from "@markdoc/markdoc";
 import React, { FC } from "react";
 import styles from "./MarkDoc.module.css";
-import { useNote } from "../../data";
+import { useApiReadNote } from "../../data";
 
 export const MarkDoc: FC = () => {
-  const { data: note, isLoading, isSuccess } = useNote();
+  const { data: note, isLoading, isSuccess } = useApiReadNote();
   
   if (isLoading) return null;
 
