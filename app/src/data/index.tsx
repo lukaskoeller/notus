@@ -3,13 +3,13 @@ import { DefaultService, Note } from "../api";
 import { useNavigate } from "@tanstack/react-router";
 import { noteRoute } from "../router";
 
-export const useNotes = () =>
+export const useApiReadNotes = () =>
   useQuery({
     queryKey: ["notes"],
     queryFn: async () => await DefaultService.getNotesNotesGet(),
   });
 
-export const useNote = () => {
+export const useApiReadNote = () => {
   const { noteId } = noteRoute.useParams();
   if (!noteId) {
     throw new Error(`Could not find note "${noteId}"`, {
@@ -18,12 +18,12 @@ export const useNote = () => {
   }
 
   return useQuery({
-    queryKey: ["note", noteId],
+    queryKey: ["notes", "note", noteId],
     queryFn: () => DefaultService.getNoteNoteIdGet({ id: Number(noteId) }),
   });
 };
 
-export const useCreateNote = () => {
+export const useApiCreateNote = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate({ from: "/note" });
 
@@ -52,42 +52,18 @@ export const useCreateNote = () => {
   });
 };
 
-export type TUseUpdateNoteArgs = Parameters<
+export type TUseApiUpdateNoteArgs = Parameters<
   typeof DefaultService.updateNoteNoteIdPatch
 >[0];
 
-export const useUpdateNote = () => {
+export const useApiUpdateNote = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (args: TUseUpdateNoteArgs) => {
+    mutationFn: (args: TUseApiUpdateNoteArgs) => {
       return DefaultService.updateNoteNoteIdPatch(args);
     },
-    // onMutate: async (args: TUseUpdateNoteArgs) => {
-    //   // Cancel any outgoing re-fetches
-    //   // (so they don't overwrite our optimistic update)
-    //   await queryClient.cancelQueries({
-    //     queryKey: ["notes", "note", args.id],
-    //   });
-
-    //   // Snapshot the previous value
-    //   const previousNote = queryClient.getQueryData([
-    //     "notes",
-    //     args.id,
-    //   ]);
-
-    //   // Optimistically update to the new value
-    //   queryClient.setQueryData(["notes", "note", args.id], args);
-
-    //   return { previousNote, args };
-    // },
-    // onError: (_err, newNote, context) => {
-    //   queryClient.setQueryData(
-    //     ["notes", "note", newNote.id],
-    //     context?.previousNote
-    //   );
-    // },
-    onSuccess: (note) =>
-      queryClient.invalidateQueries({ queryKey: ["notes", "note", note.id] }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["notes"] }),
   });
 };
