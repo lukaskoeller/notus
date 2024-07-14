@@ -16,7 +16,6 @@ export const Header: FC = () => {
         <ListIcon />
       </button>
       <NewNoteItem />
-      <button type="button">Save</button>
       <PreviewWriteSwitch />
     </header>
   );
