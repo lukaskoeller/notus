@@ -6,11 +6,11 @@ import { PreviewWriteSwitch } from "../PreviewWriteSwitch/PreviewWriteSwitch";
 import { NewNoteItem } from "../NewNoteItem/NewNoteItem";
 
 export const Header: FC = () => {
-  const { showSideNav, open } = useSideNav();
+  const { showSideNav, isBackgroundInert } = useSideNav();
   return (
     <header
       className={styles.header}
-      {...{ inert: open ? '' : undefined }}
+      {...{ inert: isBackgroundInert ? '' : undefined }}
     >
       <button type="button" className={styles.menuBtn} onClick={showSideNav}>
         <ListIcon />
