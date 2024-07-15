@@ -1,9 +1,10 @@
 import { FC } from "react";
-import { useSideNav } from "../../hooks/useSideNav";
+import { useSideNav } from "../../sideNavContext/useSideNav";
 import { ListIcon } from "../ListIcon/ListIcon";
 import styles from "./Header.module.css";
 import { PreviewWriteSwitch } from "../PreviewWriteSwitch/PreviewWriteSwitch";
 import { NewNoteItem } from "../NewNoteItem/NewNoteItem";
+import { SaveNoteButton } from "../SaveNoteButton/SaveNoteButton";
 
 export const Header: FC = () => {
   const { showSideNav, isBackgroundInert } = useSideNav();
@@ -16,6 +17,7 @@ export const Header: FC = () => {
         <ListIcon />
       </button>
       <NewNoteItem />
+      <SaveNoteButton />
       <PreviewWriteSwitch />
     </header>
   );
