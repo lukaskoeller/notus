@@ -4,7 +4,8 @@ import { noteRoute } from "../router";
 
 export const useUpdateNote = () => {
     const { noteId } = noteRoute.useParams();
-    const { mutate: mutateNote } = useApiUpdateNote();
+    const mutation = useApiUpdateNote();
+    const { mutate: mutateNote } = mutation;
 
     const updateNote = useCallback((text: string) => {
         const title = text.split("\n")?.[0]?.slice(2) ?? "";
@@ -19,5 +20,5 @@ export const useUpdateNote = () => {
         }
     }, [mutateNote, noteId]);
 
-    return updateNote;
+    return { updateNote, mutation };
 };

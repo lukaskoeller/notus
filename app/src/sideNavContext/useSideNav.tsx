@@ -1,4 +1,4 @@
 import { useContext } from "react";
-import { SideNavContext } from "../contexts/sidenav";
+import { SideNavContext } from "./sideNav";
 
 export const useSideNav = () => useContext(SideNavContext);
