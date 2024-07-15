@@ -5,9 +5,9 @@
 /** @see https://codepen.io/argyleink/pen/eYxJJbr */
 
 :root {
-  --palette-hue: 140;            /* <angle */
+  --palette-hue: 70;            /* <angle */
   --palette-hue-rotate-by: -2;   /* +- deg : warm or cool the palette */
-  --palette-chroma: 1;         /* 0-1 : lower to mute and pastel, over 2 at own risk */
+  --palette-chroma: 0.5;         /* 0-1 : lower to mute and pastel, over 2 at own risk */
   --palette-neutral-divider: 6;
 }
 
@@ -99,6 +99,8 @@ html {
   font-weight: var(--font-weight-5);
 }
 
-button {
+button, .btn {
   --_text: var(--color-5);
+
+  font-weight: var(--font-weight-5);
 }
