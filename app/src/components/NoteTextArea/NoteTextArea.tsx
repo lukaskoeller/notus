@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import styles from "./NoteTextArea.module.css";
 import { useApiReadNote } from "../../data";
-import { useUpdateNote } from "../../hooks/useUpdateNote";
+import { useEditor } from "../../editorContext/useEditor";
 
 /**
  * Changes were applied
@@ -25,14 +25,14 @@ const useDebounce = (value: string, delay: number) => {
 };
 
 export const NoteTextArea: FC = () => {
+  const { updatePendingNote } = useEditor();
   const { data: note, isLoading, isSuccess } = useApiReadNote();
-  const [text, setText] = useState(note?.content ?? "");
-  const debouncedText = useDebounce(text, 2500);
-  const updateNote = useUpdateNote();
+  const [text, setText] = useState<string>(note?.content ?? "");
+  // const debouncedText = useDebounce(text, 2500);
 
-  useEffect(() => {
-    updateNote(debouncedText);
-  }, [debouncedText, updateNote]);
+  // useEffect(() => {
+  //   updateNote(debouncedText);
+  // }, [debouncedText, updateNote]);
 
   if (isLoading) return <h2>Loading…</h2>;
 
@@ -43,6 +43,7 @@ export const NoteTextArea: FC = () => {
 
     const handleChange = (e: ChangeEvent) => {
       const value = (e.target as HTMLTextAreaElement).value;
+      updatePendingNote({ ...note, content: value });
       setText(value);
     };
 
