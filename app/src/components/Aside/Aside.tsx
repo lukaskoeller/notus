@@ -2,7 +2,7 @@ import { FC } from "react";
 import styles from "./Aside.module.css";
 import { NoteItem } from "../NoteItem/NoteItem";
 import { Stack } from "../Stack/Stack";
-import { useSideNav } from "../../hooks/useSideNav";
+import { useSideNav } from "../../sideNavContext/useSideNav";
 import { useApiReadNotes } from "../../data";
 
 export const Aside: FC = () => {
