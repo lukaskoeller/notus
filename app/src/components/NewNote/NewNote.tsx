@@ -18,8 +18,6 @@ export const NewNote: FC = () => {
           onSubmit={async (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             const form = new FormData(e.target as HTMLFormElement);
-            console.log(form, e);
-            
             const title = form.get('title') as string;
 
             await createNote.mutateAsync(title);
