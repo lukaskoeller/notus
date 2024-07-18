@@ -23,7 +23,6 @@ class Note(SQLModel, table=True):
     updated_at: datetime
 
 class NoteUpdate(SQLModel):
-    id: int
     title: Optional[str] = None
     file_name: Optional[str] = None
     content: Optional[str] = None
