@@ -1,24 +1,27 @@
 import { useCallback } from "react";
 import { useApiUpdateNote } from "../data";
-import { noteRoute } from "../router";
+import { Note } from "../api";
 
 export const useUpdateNote = () => {
-    const { noteId } = noteRoute.useParams();
-    const mutation = useApiUpdateNote();
-    const { mutate: mutateNote } = mutation;
+  const mutation = useApiUpdateNote();
+  const { mutateAsync: mutateNote } = mutation;
 
-    const updateNote = useCallback((text: string) => {
-        const title = text.split("\n")?.[0]?.slice(2) ?? "";
-        if (noteId && text) {
-          mutateNote({
-            requestBody: {
-              content: text,
-              title: title,
-            },
-            id: Number(noteId),
-          });
-        }
-    }, [mutateNote, noteId]);
+  const updateNote = useCallback(
+    (text: string, id: Note["id"]) => {
+      const title = text.split("\n")?.[0]?.slice(2) ?? "";
 
-    return { updateNote, mutation };
+      if (id && text) {
+        return mutateNote({
+          requestBody: {
+            content: text,
+            title: title,
+          },
+          id: Number(id),
+        });
+      }
+    },
+    [mutateNote]
+  );
+
+  return { updateNote, mutation };
 };
