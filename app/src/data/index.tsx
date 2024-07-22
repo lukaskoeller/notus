@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { DefaultService, Note } from "../api";
 import { useNavigate } from "@tanstack/react-router";
 import { noteRoute } from "../router";
+import { useEditor } from "../editorContext/useEditor";
 
 export const useApiReadNotes = () =>
   useQuery({
@@ -19,8 +20,23 @@ export const useApiReadNote = () => {
 
   return useQuery({
     queryKey: ["notes", "note", noteId],
-    queryFn: () => DefaultService.getNoteNoteIdGet({ id: Number(noteId) }),
+    queryFn: () => {
+      return DefaultService.getNoteNoteIdGet({ id: Number(noteId) })
+    },
   });
+};
+
+export const useReadNote = () => {
+  const { pendingNotes } = useEditor();
+  const noteQuery = useApiReadNote();
+  const { noteId } = noteRoute.useParams();
+
+  const pendingNote = (pendingNotes ?? []).find((note) => note.id === Number(noteId));
+  if (pendingNote) {
+    return { data: pendingNote, isLoading: false, isSuccess: true };
+  }
+
+  return noteQuery;
 };
 
 export const useApiCreateNote = () => {
