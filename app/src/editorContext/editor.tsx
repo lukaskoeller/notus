@@ -1,9 +1,4 @@
-import {
-  FC,
-  createContext,
-  useMemo,
-  useReducer,
-} from "react";
+import { FC, createContext, useMemo, useReducer } from "react";
 import { Note } from "../api";
 import { useUpdateNote } from "../shared/useUpdateNote";
 
@@ -18,13 +13,15 @@ type TApi = {
 type TState = {
   mode: ViewMode;
   pendingNotes: Note[];
-  submittingNotes: ReturnType<TUpdateNote>[];
 };
 
 type TActions =
   | {
       type: "save-pending-note";
-      updateNote: TUpdateNote;
+      payload: {
+        updateNote: TUpdateNote;
+        removePendingNote: TApi["removePendingNote"];
+      };
     }
   | { type: "update-pending-note"; note: Note }
   | { type: "remove-pending-note"; id: Required<Note["id"]> }
@@ -37,13 +34,16 @@ export const EditorContext = createContext<Context>({} as Context);
 function reducer(state: TState, action: TActions) {
   switch (action.type) {
     case "save-pending-note": {
-      const submittingNotes = state.pendingNotes.map((note) => {
-        return action.updateNote(note.content, note.id);
+      state.pendingNotes.forEach((note) => {
+        action.payload.updateNote(note.content, note.id)
+          ?.catch(() => {
+            // @todo Send error notification
+            // action.payload.removePendingNote(note.id);
+          })
       });
 
       return {
         ...state,
-        submittingNotes,
       };
     }
     case "update-pending-note":
@@ -89,16 +89,9 @@ export const EditorProvider: FC<{ children: React.ReactNode }> = ({
   const [state, dispatch] = useReducer(reducer, {
     mode: "preview",
     pendingNotes: [],
-    submittingNotes: [],
   });
 
   const api = useMemo(() => {
-    const uploadPendingNotes = () => {
-      return setTimeout(() => {
-        dispatch({ type: "save-pending-note", updateNote });
-      }, 1000);
-    };
-
     let timer: number;
 
     const setMode: TApi["setMode"] = (mode) => {
@@ -107,6 +100,15 @@ export const EditorProvider: FC<{ children: React.ReactNode }> = ({
 
     const removePendingNote: TApi["removePendingNote"] = (id) => {
       dispatch({ type: "remove-pending-note", id });
+    };
+
+    const uploadPendingNotes = () => {
+      return setTimeout(() => {
+        dispatch({
+          type: "save-pending-note",
+          payload: { updateNote, removePendingNote },
+        });
+      }, 4000);
     };
 
     const updatePendingNote: TApi["updatePendingNote"] = (note) => {
