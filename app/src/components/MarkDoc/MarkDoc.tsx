@@ -1,10 +1,10 @@
 import Markdoc from "@markdoc/markdoc";
 import React, { FC } from "react";
 import styles from "./MarkDoc.module.css";
-import { useApiReadNote } from "../../data";
+import { useReadNote } from "../../data";
 
 export const MarkDoc: FC = () => {
-  const { data: note } = useApiReadNote();
+  const { data: note } = useReadNote();
   const ast = Markdoc.parse(note?.content ?? "");
   const markdown = Markdoc.transform(ast);
 
