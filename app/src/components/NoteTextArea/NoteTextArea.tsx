@@ -1,36 +1,31 @@
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC } from "react";
 import styles from "./NoteTextArea.module.css";
-import { useApiReadNote } from "../../data";
+import { useReadNote } from "../../data";
 import { useEditor } from "../../editorContext/useEditor";
 
 export const NoteTextArea: FC = () => {
   const { updatePendingNote } = useEditor();
-  const { data: note, isLoading, isSuccess } = useApiReadNote();
-  const [text, setText] = useState<string>(note?.content ?? "");
+  const { data: note, isLoading, isSuccess } = useReadNote();
 
   if (isLoading) return <h2>Loading…</h2>;
 
   if (isSuccess) {
-    if (!text && note.content) {
-      setText(note.content);
-    }
-
     const handleChange = (e: ChangeEvent) => {
       const value = (e.target as HTMLTextAreaElement).value;
       updatePendingNote({ ...note, content: value });
-      setText(value);
     };
 
     return (
       <textarea
+        key={note.id}
         className={styles.textarea}
-        value={text}
+        value={note.content}
         onChange={handleChange}
-        autoFocus
-        onFocus={(event) => {
-          const field = event.target as HTMLTextAreaElement;
-          field.setSelectionRange(field.value.length, field.value.length);
-        }}
+        // autoFocus
+        // onFocus={(event) => {
+        //   const field = event.target as HTMLTextAreaElement;
+        //   field.setSelectionRange(field.value.length, field.value.length);
+        // }}
       />
     );
   }
